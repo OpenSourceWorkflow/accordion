@@ -11,6 +11,9 @@
     "accordion",
     "aria"
   ],
+  "moduleType": [
+    "amd"
+  ],
   "license": "MIT",
   "private": false,
   "dependencies": {
