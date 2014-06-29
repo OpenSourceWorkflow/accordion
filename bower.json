@@ -1,12 +1,12 @@
 {
-  "name": "mf-accordion",
+  "name": "jquery.accordion",
   "version": "1.0.0",
   "homepage": "https://github.com/markusfalk/accordion",
   "authors": [
     "Markus Falk <mail@markus-falk.com>"
   ],
   "description": "Simple AMD Accordion Script.",
-  "main": "mf-accordion.js",
+  "main": "jquery.accordion.js",
   "keywords": [
     "accordion",
     "aria"

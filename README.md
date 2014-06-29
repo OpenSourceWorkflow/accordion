@@ -28,6 +28,6 @@ Setup
 Installation
 ------------
 
-```terminal
+```shell
 bower install markusfalk/accordion
 ```
