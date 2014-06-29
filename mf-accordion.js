@@ -1,4 +1,4 @@
-define(['jquery', 'libs/jquery/jquery.doitifneeded'], function() {
+define(['jquery'], function() {
 
   'use strict';
 
