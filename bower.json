@@ -19,8 +19,6 @@
   "ignore": [
     "**/.*",
     "*.html",
-    "*.md",
-    "*.json",
-    "LICENSE"
+    "*.md"
   ]
 }
