@@ -14,6 +14,10 @@
   "license": "MIT",
   "private": false,
   "ignore": [
-    "**/.*"
+    "**/.*",
+    "*.html",
+    "*.md",
+    "*.json",
+    "LICENSE"
   ]
 }
