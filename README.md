@@ -6,8 +6,7 @@ Simple Accordion Script (AMD, Bower).
 * multiple tabs can be opened and closed independently
 * multiple accordions can be used on the same page
 * supports ARIA-roles
-* falls back to simple h1 > content hierarchy
-
+* falls back to simple heading > content hierarchy
 * requires jQuery 1.7+
 
 Setup
