@@ -14,7 +14,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": [
-    "jquery"
+    "jquery": null
   ],
   "ignore": [
     "**/.*",
