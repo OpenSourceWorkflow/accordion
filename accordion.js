@@ -10,24 +10,24 @@ define(['jquery'], function() {
   *************************************************************/
 
   var Accordion = {
+    DEFAULTS: {
+      animationSpeed: 300
+    },
     cacheElements: function() {
-      this.$accordion = $('.accordion').attr('role', 'tablist');
-      this.$accordion_header = $('.accordion-header')
-                                .attr('role', 'tab')
-                                .attr('tabindex', '0')
-                                .attr('aria-selected', 'false');
+      this.$accordion = $('.accordion');
       this.$accordion_content = $('.accordion-content');
+      this.$accordion_header = $('.accordion-header');
     },
     init: function() {
       this.cacheElements();
       this.addARIAlabels();
+      this.setupAccordion();
       this.bindEvents();
-
-      // hiding tab-content
-      this.$accordion_content
-        .attr('aria-expanded', 'false')
-        .attr('role', 'tab-panel')
-        .hide();
+    },
+    setupAccordion: function() {
+      this.$accordion.attr('role', 'tablist');
+      this.$accordion_content.attr('aria-expanded', 'false').attr('role', 'tab-panel').hide();
+      this.$accordion_header.attr('role', 'tab').attr('tabindex', '0').attr('aria-selected', 'false');
 
       this.$accordion.each(function() {
         $(this).trigger('accordion.initialized');
@@ -49,70 +49,68 @@ define(['jquery'], function() {
     addARIAlabels: function() {
       this.$accordion.each(function(index) {
 
-        var $accordion_header = $(this).find('.accordion-header').attr('id', 'accordion-' + index);
-        var $accordion_content = $(this).find('.accordion-content').attr('id', 'accordion-' + index);
+        var
+        that = $(this),
+        $accordion_header = that.find('.accordion-header').attr('id', 'accordion-' + index),
+        $accordion_content = that.find('.accordion-content').attr('id', 'accordion-' + index);
 
         $accordion_header.each(function (index){
 
+          var that = $(this);
+
           // set IDs
-          $(this)
-            .attr('id', $(this).attr('id') + '-header-' + index)
+          that
+            .attr('id', that.attr('id') + '-header-' + index)
             .next()
-            .attr('id', $(this).next().attr('id') + '-content-' + index);
+            .attr('id', that.next().attr('id') + '-content-' + index);
 
           // set aria-controls
-          $(this)
-            .attr('aria-controls', $(this).next().attr('id'));
-
+          that
+            .attr('aria-controls', that.next().attr('id'));
         });
 
-        $accordion_content.each(function (){
+        $accordion_content.each(function() {
+          var that = $(this);
+
           // set aria-labelledby
-          $(this)
-            .attr('aria-labelledby', $(this).prev().attr('id'));
+          that
+            .attr('aria-labelledby', that.prev().attr('id'));
         });
 
       });
     },
-    toggleAccordion: function(element) {
+    toggleAccordion: function(accordion_header) {
 
       var
-      accordion_content = element.next();
+      accordion_content = accordion_header.next();
 
-      if (element.attr('aria-selected') === 'false') {
+      if (accordion_header.attr('aria-selected') === 'false') {
         // open
 
         // accordion-header
-        element.attr('aria-selected', 'true');
+        accordion_header.attr('aria-selected', 'true').addClass('active');
 
         // accordion-content
-        accordion_content
-        .attr('aria-expanded', 'true')
-        .attr('aria-hidden', 'false');
+        accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
 
-        element.trigger('accordion.opened', [element, accordion_content]);
+        accordion_content.slideDown(Accordion.DEFAULTS.animationSpeed, function() {
+          accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
+        });
 
       } else {
         // close
 
         // accordion-header
-        element.attr('aria-selected', 'false');
+        accordion_header.attr('aria-selected', 'false').removeClass('active');
 
         // accordion-content
-        accordion_content
-        .attr('aria-expanded', 'false')
-        .attr('aria-hidden', 'true');
+        accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
 
-        element.trigger('accordion.closed', [element, accordion_content]);
+        accordion_content.slideUp(Accordion.DEFAULTS.animationSpeed, function() {
+          accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
+        });
 
       }
-
-      // * Change active class on link
-      // * toggle accordion-content
-      element
-        .toggleClass('active')
-        .next()
-        .slideToggle();
     }
   };
 
