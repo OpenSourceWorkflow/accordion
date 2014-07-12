@@ -26,7 +26,7 @@ define(['jquery'], function() {
     },
     setupAccordion: function() {
       this.$accordion.attr('role', 'tablist');
-      this.$accordion_content.attr('aria-expanded', 'false').attr('role', 'tab-panel').hide();
+      this.$accordion_content.attr('aria-expanded', 'false').attr('role', 'tabpanel').hide();
       this.$accordion_header.attr('role', 'tab').attr('tabindex', '0').attr('aria-selected', 'false');
 
       this.$accordion.each(function() {
