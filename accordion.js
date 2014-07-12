@@ -88,7 +88,7 @@ define(['jquery'], function() {
         // open
 
         // accordion-header
-        accordion_header.attr('aria-selected', 'true').addClass('active');
+        accordion_header.attr('aria-selected', 'true').addClass('accordion-active');
 
         // accordion-content
         accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
@@ -101,7 +101,7 @@ define(['jquery'], function() {
         // close
 
         // accordion-header
-        accordion_header.attr('aria-selected', 'false').removeClass('active');
+        accordion_header.attr('aria-selected', 'false').removeClass('accordion-active');
 
         // accordion-content
         accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
