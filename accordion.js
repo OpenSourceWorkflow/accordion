@@ -39,9 +39,10 @@ define(['jquery'], function() {
         Accordion.toggleAccordion($(this));
       });
 
-      // tab to accordion header and press enter key
+       // tab to accordion header and press space bar
       this.$accordion_header.on('keydown', function(event) {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 32) {
+          event.preventDefault();
           Accordion.toggleAccordion($(this));
         }
       });
