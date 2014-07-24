@@ -35,7 +35,8 @@ define(['jquery'], function() {
     },
     bindEvents: function() {
       // Click accordion header
-      this.$accordion_header.on('click', function() {
+      this.$accordion_header.on('click', function(event) {
+        event.preventDefault();
         Accordion.toggleAccordion($(this));
       });
 
