@@ -38,5 +38,5 @@ Installation
 ------------
 
 ```shell
-bower install markusfalk/accordion
+bower install accordion
 ```
