@@ -1,4 +1,4 @@
-define(['jquery'], function() {
+define(['jquery', 'jquery.exists'], function() {
 
   'use strict';
 
@@ -19,10 +19,12 @@ define(['jquery'], function() {
       this.$accordion_header = $('.accordion-header');
     },
     init: function() {
-      this.cacheElements();
-      this.addARIAlabels();
-      this.setupAccordion();
-      this.bindEvents();
+      this.$accordion.exists(function() {
+        Accordion.cacheElements();
+        Accordion.addARIAlabels();
+        Accordion.setupAccordion();
+        Accordion.bindEvents();
+      });
     },
     setupAccordion: function() {
       this.$accordion.attr('role', 'tablist');

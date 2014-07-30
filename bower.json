@@ -1,6 +1,6 @@
 {
   "name": "accordion",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "homepage": "https://github.com/markusfalk/accordion",
   "authors": [
     "Markus Falk <mail@markus-falk.com>"
@@ -17,7 +17,8 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "jquery": ">1.7.0"
+    "jquery": ">1.7.0",
+    "jquery.exists": "jquery.exists"
   },
   "ignore": [
     "*.html",
