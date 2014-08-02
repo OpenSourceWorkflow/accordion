@@ -18,7 +18,7 @@
   "private": false,
   "dependencies": {
     "jquery": ">1.7.0",
-    "jquery.exists": "jquery.exists"
+    "jquery.exists": "~1.0.0"
   },
   "ignore": [
     "*.html",
