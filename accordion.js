@@ -19,8 +19,9 @@ define(['jquery', 'jquery.exists'], function() {
       this.$accordion_header = $('.accordion-header');
     },
     init: function() {
+      Accordion.cacheElements();
+
       this.$accordion.exists(function() {
-        Accordion.cacheElements();
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
