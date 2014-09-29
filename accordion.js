@@ -25,6 +25,7 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
+        Accordion.openTabs();
       });
     },
     setupAccordion: function() {
@@ -116,6 +117,17 @@ define(['jquery', 'jquery.exists'], function() {
         });
 
       }
+    },
+    openTabs: function() {
+
+      var anchors = window.location.hash.split('#');
+
+      anchors.forEach(function(id) {
+        var anchor = $('#' + id);
+        if (anchor.length) {
+          Accordion.toggleAccordion(anchor.next('.accordion-header'));
+        }
+      });
     }
   };
 
