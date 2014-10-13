@@ -26,8 +26,9 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.setupAccordion();
         Accordion.bindEvents();
 
-        if(window.location.hash) {
-          Accordion.openLinkedAccordionContent(window.location.hash);
+        var hash = window.location.hash;
+        if(hash) {
+          Accordion.openLinkedAccordionContent(hash);
         }
 
       });
@@ -49,7 +50,7 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.toggleAccordion($(this));
       });
 
-       // tab to accordion header and press space bar
+      // tab to accordion header and press space bar
       this.$accordion_header.on('keydown', function(event) {
         if (event.keyCode === 32) {
           event.preventDefault();
@@ -124,6 +125,8 @@ define(['jquery', 'jquery.exists'], function() {
       }
     },
     openLinkedAccordionContent: function(hash) {
+      // find the linked accordion content and click
+      // corresponding .accordion-header to open it
       $(hash).prev().trigger('click');
     }
   };
