@@ -25,7 +25,13 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
+
+        if(window.location.hash) {
+          Accordion.openLinkedAccordionContent(window.location.hash);
+        }
+
       });
+
     },
     setupAccordion: function() {
       this.$accordion.attr('role', 'tablist');
@@ -116,6 +122,9 @@ define(['jquery', 'jquery.exists'], function() {
         });
 
       }
+    },
+    openLinkedAccordionContent: function(hash) {
+      $(hash).prev().trigger('click');
     }
   };
 
