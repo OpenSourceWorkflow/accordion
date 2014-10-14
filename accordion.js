@@ -126,7 +126,7 @@ define(['jquery', 'jquery.exists'], function() {
     },
     openLinkedAccordionContent: function(hash) {
       // find the linked accordion content and click
-      // corresponding .accordion-header to open it
+      // corresponding .accordion-header to open it#
       $(hash).prev().trigger('click');
     }
   };
