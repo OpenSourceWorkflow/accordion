@@ -8,7 +8,7 @@ Simple Accordion Script (AMD, Bower).
 * falls back to simple heading > content hierarchy
 * requires jQuery 1.7+
 
-## Setup
+## HTML Setup
 
 ```html
 <div class="accordion">
