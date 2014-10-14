@@ -1,0 +1,25 @@
+{
+  "name": "accordion",
+  "version": "1.2.7",
+  "description": "Simple Accordion Script",
+  "main": "accordion.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markusfalk/accordion.git"
+  },
+  "keywords": [
+    "accordion",
+    "aria"
+  ],
+  "author": "mail@markus-falk.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markusfalk/accordion/issues"
+  },
+  "homepage": "https://github.com/markusfalk/accordion",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compass": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

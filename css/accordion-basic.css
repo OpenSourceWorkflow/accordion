@@ -1,0 +1,12 @@
+/* mail@markus-falk.com, Version: 1.2.7 */
+/* line 3, ../scss/accordion-basic.scss */
+.accordion-header {
+  cursor: pointer;
+}
+
+/* line 8, ../scss/accordion-basic.scss */
+.accordion-content {
+  display: none;
+}
+
+/*# sourceMappingURL=accordion-basic.css.map */
