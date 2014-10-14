@@ -11,6 +11,10 @@ Simple Accordion Script (AMD, Bower).
 ## HTML Setup
 
 ```html
+<!-- add basic styling -->
+<link rel="stylesheet" href="css/accordion-basic.css">
+
+<!-- minimal setup -->
 <div class="accordion">
   <h2 class="accordion-header">Accordion Header</h2>
   <div class="accordion-content">
