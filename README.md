@@ -1,5 +1,4 @@
-accordion
-=========
+# accordion
 
 Simple Accordion Script (AMD, Bower).
 
@@ -9,8 +8,7 @@ Simple Accordion Script (AMD, Bower).
 * falls back to simple heading > content hierarchy
 * requires jQuery 1.7+
 
-Setup
------
+## Setup
 
 ```html
 <div class="accordion">
@@ -25,8 +23,16 @@ Setup
 </div> <!-- accordion -->
 ```
 
-Events
-------
+## Additional Features
+
+From another page you can link to a specific accordion-content via the given ID that will open that panel on the target page.
+
+```html
+<!-- will open the first accordion-content placed on accordion.html -->
+<a href="accordion.html#accordion-0-content-0">Link to Page with Accordion</a>
+```
+
+## Events
 
 ```javascript
 'accordion.opened' // passes .accordion-header, .accordion-content
@@ -34,8 +40,7 @@ Events
 'accordion.initialized' // passes .accordion
 ```
 
-Installation
-------------
+## Installation
 
 ```shell
 bower install accordion
