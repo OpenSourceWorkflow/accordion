@@ -131,6 +131,8 @@ define(['jquery', 'jquery.exists'], function() {
     }
   };
 
-  Accordion.init();
+  return {
+    init: Accordion.init
+  };
 
 });
