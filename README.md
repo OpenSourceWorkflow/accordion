@@ -51,6 +51,13 @@ requirejs(['accordion'], function(Accordion) {
 From another page you can link to a specific accordion-content via the given ID that will open that panel on the target page.
 
 ```html
+<!-- will open the first accordion-content placed on accordion.html -->
+<a href="accordion.html#accordion-0-content-0">Link to Page with Accordion</a>
+```
+
+### Open panel via class
+
+```html
 <!-- will open panel with accordion-opened class -->
 <h2 class="accordion-header">Accordion Header One (.accordion-opened)</h2>
 <div class="accordion-content accordion-opened">
@@ -62,8 +69,6 @@ From another page you can link to a specific accordion-content via the given ID 
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div> <!-- accordion-content -->
 ```
-
-### Open panel via class
 
 ## Events
 
