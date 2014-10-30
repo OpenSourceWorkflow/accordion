@@ -21,7 +21,7 @@ define(['jquery', 'jquery.exists'], function() {
     init: function() {
       Accordion.cacheElements();
 
-      this.$accordion.exists(function() {
+      Accordion.$accordion.exists(function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
