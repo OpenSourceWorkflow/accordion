@@ -23,6 +23,9 @@
   "ignore": [
     "*.html",
     "*.md",
-    ".gitignore"
+    ".gitignore",
+    "gruntfile.js",
+    "package.json",
+    "config.js"
   ]
 }
