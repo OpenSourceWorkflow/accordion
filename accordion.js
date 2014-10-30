@@ -17,6 +17,7 @@ define(['jquery', 'jquery.exists'], function() {
       this.$accordion = $('.accordion');
       this.$accordion_content = $('.accordion-content');
       this.$accordion_header = $('.accordion-header');
+      this.$accordion_opened = $('.accordion-opened');
     },
     init: function() {
       Accordion.cacheElements();
@@ -25,12 +26,7 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
-
-        var hash = window.location.hash;
-        if(hash) {
-          Accordion.openLinkedAccordionContent(hash);
-        }
-
+        Accordion.openAccordionEntry();
       });
 
     },
@@ -124,10 +120,28 @@ define(['jquery', 'jquery.exists'], function() {
 
       }
     },
-    openLinkedAccordionContent: function(hash) {
-      // find the linked accordion content and click
-      // corresponding .accordion-header to open it#
-      $(hash).prev().trigger('click');
+    openAccordionEntry: function() {
+
+      // find linked accordion content and click
+      // corresponding .accordion-header to open it
+      var hash = window.location.hash;
+      if(hash) {
+        $(hash).prev().trigger('click');
+      }
+
+      // open accordion content with class
+      // 'accordion-opened'
+      this.$accordion_opened.exists(function() {
+        Accordion.$accordion_opened.each(function() {
+
+          // only open if it is not linked via url hash
+          if(hash != ('#' + this.id)) {
+            $(this).prev().trigger('click');
+          }
+
+        });
+      });
+
     }
   };
 
