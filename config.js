@@ -14,4 +14,6 @@ requirejs.config({
 
 });
 
-requirejs(['accordion']);
+requirejs(['accordion'], function(Accordion) {
+  Accordion.init();
+});
