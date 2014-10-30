@@ -28,10 +28,9 @@ module.exports = function(grunt) {
     compass: {
       options: {
         // httpPath: "/",
-        banner: "/* <%= pkg.author %>, Version: <%= pkg.version %> */",
+        // banner: "/* <%= pkg.author %>, Version: <%= pkg.version %> */",
         cssDir: 'css',
         imagesDir: 'img',
-        noLineComments: false,
         sassDir: 'scss',
         specify: "scss/*.scss"
       },
