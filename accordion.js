@@ -4,14 +4,14 @@ define(['jquery', 'jquery.exists'], function() {
 
   /************************************************************
     @author mail@markus-falk.com
-    @description Simple Accordion Script that allows for
-    multiple tabs to be open. Sets ARIA-roles as well.
+    @description simple and accessible accordion
     @requires jQuery 1.7+
   *************************************************************/
 
   var Accordion = {
     DEFAULTS: {
-      animationSpeed: 300
+      animationSpeed: 300,
+      naturalBehavior: false
     },
     cacheElements: function() {
       this.$accordion = $('.accordion');
@@ -19,16 +19,19 @@ define(['jquery', 'jquery.exists'], function() {
       this.$accordion_header = $('.accordion-header');
       this.$accordion_opened = $('.accordion-opened');
     },
-    init: function() {
+    init: function(options) {
       Accordion.cacheElements();
-
       Accordion.$accordion.exists(function() {
+        Accordion.setOptions(options);
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
         Accordion.openAccordionEntry();
       });
-
+    },
+    setOptions: function(options) {
+      this.options = $.extend({}, Accordion.DEFAULTS, options);
+      console.log(this.options);
     },
     setupAccordion: function() {
       this.$accordion.attr('role', 'tablist');
@@ -101,7 +104,7 @@ define(['jquery', 'jquery.exists'], function() {
         // accordion-content
         accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
 
-        accordion_content.slideDown(Accordion.DEFAULTS.animationSpeed, function() {
+        accordion_content.slideDown(Accordion.options.animationSpeed, function() {
           accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
         });
 
@@ -114,7 +117,7 @@ define(['jquery', 'jquery.exists'], function() {
         // accordion-content
         accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
 
-        accordion_content.slideUp(Accordion.DEFAULTS.animationSpeed, function() {
+        accordion_content.slideUp(Accordion.options.animationSpeed, function() {
           accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
         });
 
