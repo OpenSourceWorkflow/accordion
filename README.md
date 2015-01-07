@@ -44,6 +44,26 @@ requirejs(['accordion'], function(Accordion) {
 });
 ```
 
+## Options
+
+```javascript
+requirejs(['accordion'], function(Accordion) {
+  // Accordion needs to be initialized through its API with:
+  Accordion.init({
+    animationSpeed: 100, // default: 300
+    naturalBehavior: true // default: false
+  });
+});
+```
+
+### animationSpeed
+
+Sets the speed of the opening and closing animation of the accordion in milliseconds.
+
+### naturalBehavior
+
+When set to true an entry will close upon opening another. When set to false you can open as many entries as you like.
+
 ## Additional Features
 
 ### Open panel via URL hash
@@ -77,6 +97,10 @@ From another page you can link to a specific accordion-content via the given ID 
 'accordion.closed' // passes .accordion-header, .accordion-content
 'accordion.initialized' // passes .accordion
 ```
+
+## Known Issues
+
+If ```javascript naturalBehavior``` is set to true the URL hash will take precedence over the 'accordion-opened' class opening an accordion content.
 
 ## Installation
 

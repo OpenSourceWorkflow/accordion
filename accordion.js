@@ -27,8 +27,8 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
-        Accordion.openAccordionViaHash();
         Accordion.openAccordionViaClass();
+        Accordion.openAccordionViaHash();
       });
     },
 

@@ -15,8 +15,5 @@ requirejs.config({
 });
 
 requirejs(['accordion'], function(Accordion) {
-  Accordion.init({
-    animationSpeed: 100,
-    naturalBehavior: true
-  });
+  Accordion.init();
 });
