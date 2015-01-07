@@ -19,6 +19,7 @@ define(['jquery', 'jquery.exists'], function() {
       this.$accordion_header = $('.accordion-header');
       this.$accordion_opened = $('.accordion-opened');
     },
+
     init: function(options) {
       Accordion.cacheElements();
       Accordion.$accordion.exists(function() {
@@ -26,26 +27,16 @@ define(['jquery', 'jquery.exists'], function() {
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
-        Accordion.openAccordionEntry();
+        Accordion.openAccordionViaHash();
+        Accordion.openAccordionViaClass();
       });
     },
-    setOptions: function(options) {
-      this.options = $.extend({}, Accordion.DEFAULTS, options);
-      console.log(this.options);
-    },
-    setupAccordion: function() {
-      this.$accordion.attr('role', 'tablist');
-      this.$accordion_content.attr('aria-expanded', 'false').attr('role', 'tabpanel').hide();
-      this.$accordion_header.attr('role', 'tab').attr('tabindex', '0').attr('aria-selected', 'false');
 
-      this.$accordion.each(function() {
-        $(this).trigger('accordion.initialized');
-      });
-    },
     bindEvents: function() {
       // Click accordion header
       this.$accordion_header.on('click', function(event) {
         event.preventDefault();
+        Accordion.closeAll($(this));
         Accordion.toggleAccordion($(this));
       });
 
@@ -57,6 +48,22 @@ define(['jquery', 'jquery.exists'], function() {
         }
       });
     },
+
+    setOptions: function(options) {
+      // extend DEFAULTS with given options
+      this.options = $.extend({}, Accordion.DEFAULTS, options);
+    },
+
+    setupAccordion: function() {
+      this.$accordion.attr('role', 'tablist');
+      this.$accordion_content.attr('aria-expanded', 'false').attr('role', 'tabpanel').hide();
+      this.$accordion_header.attr('role', 'tab').attr('tabindex', '0').attr('aria-selected', 'false');
+
+      this.$accordion.each(function() {
+        $(this).trigger('accordion.initialized');
+      });
+    },
+
     addARIAlabels: function() {
       this.$accordion.each(function(index) {
 
@@ -90,61 +97,83 @@ define(['jquery', 'jquery.exists'], function() {
 
       });
     },
-    toggleAccordion: function(accordion_header) {
+
+    closeAll: function(accordion_header) {
+
+      var opened = accordion_header.closest('.accordion').find('.accordion-active');
+
+      // close opened entry when option is set and the open entry is not the clicked
+      if(this.options.naturalBehavior && !opened.is(accordion_header)) {
+        this.closeAccordion(opened);
+      }
+    },
+
+    openAccordion: function(accordion_header) {
 
       var
       accordion_content = accordion_header.next();
 
+      // accordion-header
+      accordion_header.attr('aria-selected', 'true').addClass('accordion-active');
+
+      // accordion-content
+      accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
+
+      accordion_content.slideDown(Accordion.options.animationSpeed, function() {
+        accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
+      });
+
+    },
+
+    closeAccordion: function(accordion_header) {
+
+      var
+      accordion_content = accordion_header.next();
+
+      // accordion-header
+      accordion_header.attr('aria-selected', 'false').removeClass('accordion-active');
+
+      // accordion-content
+      accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
+
+      accordion_content.slideUp(Accordion.options.animationSpeed, function() {
+        accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
+      });
+
+    },
+
+    toggleAccordion: function(accordion_header) {
+
       if (accordion_header.attr('aria-selected') === 'false') {
-        // open
-
-        // accordion-header
-        accordion_header.attr('aria-selected', 'true').addClass('accordion-active');
-
-        // accordion-content
-        accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
-
-        accordion_content.slideDown(Accordion.options.animationSpeed, function() {
-          accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
-        });
-
+        // open:
+        this.openAccordion(accordion_header);
       } else {
-        // close
-
-        // accordion-header
-        accordion_header.attr('aria-selected', 'false').removeClass('accordion-active');
-
-        // accordion-content
-        accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
-
-        accordion_content.slideUp(Accordion.options.animationSpeed, function() {
-          accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
-        });
-
+        // close:
+        this.closeAccordion(accordion_header);
       }
     },
-    openAccordionEntry: function() {
 
+    openAccordionViaHash: function() {
       // find linked accordion content and click
       // corresponding .accordion-header to open it
-      var hash = window.location.hash;
-      if(hash) {
-        $(hash).prev().trigger('click');
+      if(window.location.hash) {
+        $(window.location.hash).prev().trigger('click');
       }
+    },
 
+    openAccordionViaClass: function() {
       // open accordion content with class
       // 'accordion-opened'
       this.$accordion_opened.exists(function() {
         Accordion.$accordion_opened.each(function() {
 
-          // only open if it is not linked via url hash
-          if(hash != ('#' + this.id)) {
+          // only open if it is not linked via url window.location.hash
+          if(window.location.hash != ('#' + this.id)) {
             $(this).prev().trigger('click');
           }
 
         });
       });
-
     }
   };
 
