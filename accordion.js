@@ -1,5 +1,10 @@
-define(['jquery', 'jquery.exists'], function() {
-
+;(function (module) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery', 'jquery.exists'], module);
+  } else {
+    window.Accordion = module(jQuery);
+  }
+} (function ($) {
   'use strict';
 
   /************************************************************
@@ -181,4 +186,4 @@ define(['jquery', 'jquery.exists'], function() {
     init: Accordion.init
   };
 
-});
+}));
