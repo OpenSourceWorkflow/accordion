@@ -6,7 +6,11 @@
     "Markus Falk <mail@markus-falk.com>"
   ],
   "description": "Simple Accordion Module",
-  "main": "accordion.js",
+  "main": [
+    "accordion.js",
+    "css/accordion-basic.css",
+    "scss/accordion-basic.scss"
+  ],
   "keywords": [
     "accordion",
     "aria"
