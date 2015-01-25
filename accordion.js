@@ -1,6 +1,6 @@
 ;(function (module) {
   if (typeof define === 'function' && define.amd) {
-    define(['jquery', 'jquery.exists'], module);
+    define(['jquery'], module);
   } else {
     window.Accordion = module(jQuery);
   }
@@ -27,14 +27,14 @@
 
     init: function(options) {
       Accordion.cacheElements();
-      Accordion.$accordion.exists(function() {
+      if(Accordion.$accordion.length)
         Accordion.setOptions(options);
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
         Accordion.bindEvents();
         Accordion.openAccordionViaClass();
         Accordion.openAccordionViaHash();
-      });
+      };
     },
 
     bindEvents: function() {
@@ -169,15 +169,13 @@
     openAccordionViaClass: function() {
       // open accordion content with class
       // 'accordion-opened'
-      this.$accordion_opened.exists(function() {
-        Accordion.$accordion_opened.each(function() {
+      this.$accordion_opened.each(function() {
 
-          // only open if it is not linked via url window.location.hash
-          if(window.location.hash != ('#' + this.id)) {
-            $(this).prev().trigger('click');
-          }
+        // only open if it is not linked via url window.location.hash
+        if(window.location.hash != ('#' + this.id)) {
+          $(this).prev().trigger('click');
+        }
 
-        });
       });
     }
   };

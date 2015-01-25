@@ -16,13 +16,13 @@
     "aria"
   ],
   "moduleType": [
-    "amd"
+    "amd",
+    "globals"
   ],
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "jquery": ">1.7.0",
-    "jquery.exists": "~1.0.0"
+    "jquery": ">1.7.0"
   },
   "ignore": [
     "*.html",
