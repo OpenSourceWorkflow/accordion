@@ -3,10 +3,20 @@
   <head>
     <title>Accordion</title>
      <link rel="stylesheet" href="css/accordion-basic.css">
+     <style>
+        .accordion-header {
+          margin-bottom: 0;
+        }
+        .accordion-content {
+          padding-top: .5em;
+          box-sizing: border-box;
+        }
+     </style>
   </head>
   <body>
     <h1>Accordion</h1>
-    <div class="accordion">
+    <div class="accordion"
+        data-natural-behavior="true">
       <h2 class="accordion-header">Accordion Header One (.accordion-opened)</h2>
       <div class="accordion-content accordion-opened">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -28,7 +38,8 @@
     </div> <!-- accordion -->
 
     <h1>Accordion two</h1>
-    <div class="accordion">
+    <div class="accordion"
+        data-animation-speed="1000">
       <h2 class="accordion-header">Accordion Header Three (#accordion-1-header-0)</h2>
       <div class="accordion-content">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

@@ -57,6 +57,12 @@
     setOptions: function(options) {
       // extend DEFAULTS with given options
       this.options = $.extend({}, Accordion.DEFAULTS, options);
+
+      this.$accordion.each(function (item, index) {
+        var data = $.extend({}, Accordion.options, $(this).data());
+        $(this).data(data);
+        $(this).find('.accordion-header').data(data).next().data(data);
+      });
     },
 
     setupAccordion: function() {
@@ -108,7 +114,7 @@
       var opened = accordion_header.closest('.accordion').find('.accordion-active');
 
       // close opened entry when option is set and the open entry is not the clicked
-      if(this.options.naturalBehavior && !opened.is(accordion_header)) {
+      if(accordion_header.data().naturalBehavior && !opened.is(accordion_header)) {
         this.closeAccordion(opened);
       }
     },
@@ -124,10 +130,11 @@
       // accordion-content
       accordion_content.attr('aria-expanded', 'true').attr('aria-hidden', 'false');
 
-      accordion_content.slideDown(Accordion.options.animationSpeed, function() {
-        accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
-      });
-
+      if(accordion_header.length) {
+        accordion_content.slideDown(accordion_header.data().animationSpeed, function() {
+          accordion_header.trigger('accordion.opened', [accordion_header, accordion_content]);
+        });
+      }
     },
 
     closeAccordion: function(accordion_header) {
@@ -140,11 +147,11 @@
 
       // accordion-content
       accordion_content.attr('aria-expanded', 'false').attr('aria-hidden', 'true');
-
-      accordion_content.slideUp(Accordion.options.animationSpeed, function() {
-        accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
-      });
-
+      if(accordion_header.length) {
+        accordion_content.slideUp(accordion_header.data().animationSpeed, function() {
+          accordion_header.trigger('accordion.closed', [accordion_header, accordion_content]);
+        });
+      }
     },
 
     toggleAccordion: function(accordion_header) {
