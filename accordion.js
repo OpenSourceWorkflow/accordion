@@ -27,7 +27,7 @@
 
     init: function(options) {
       Accordion.cacheElements();
-      if(Accordion.$accordion.length)
+      if(Accordion.$accordion.length) {
         Accordion.setOptions(options);
         Accordion.addARIAlabels();
         Accordion.setupAccordion();
@@ -57,6 +57,11 @@
     setOptions: function(options) {
       // extend DEFAULTS with given options
       this.options = $.extend({}, Accordion.DEFAULTS, options);
+
+        console.log('item, index');
+      this.$accordion.each(function (item, index) {
+        console.log(item, index);
+      });
     },
 
     setupAccordion: function() {
