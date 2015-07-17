@@ -11,10 +11,11 @@ define(['jquery', 'jquery.exists'], function($) {
   var Accordion = {
     DEFAULTS: {
       animationSpeed: 300,
-      naturalBehavior: false
+      naturalBehavior: false,
+      containerClass: '.accordion'
     },
     cacheElements: function() {
-      this.$accordion = $('.accordion');
+      this.$accordion = $(Accordion.options.containerClass);
       this.$accordion_content = $('.accordion-content');
       this.$accordion_header = $('.accordion-header');
       this.$accordion_opened = $('.accordion-opened');
