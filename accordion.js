@@ -15,7 +15,7 @@ define(['jquery', 'jquery.exists'], function($) {
       containerClass: '.accordion'
     },
     cacheElements: function() {
-      this.$accordion = $(Accordion.options.containerClass);
+      this.$accordion = $(this.DEFAULTS.containerClass);
       this.$accordion_content = $('.accordion-content');
       this.$accordion_header = $('.accordion-header');
       this.$accordion_opened = $('.accordion-opened');
