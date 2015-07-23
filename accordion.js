@@ -77,7 +77,8 @@ define(['jquery', 'jquery.exists'], function($) {
       this.$accordion.each(function(index) {
         var
         that = $(this),
-        $accordion_header = that.find('.accordion-header').attr('id', 'accordion-' + index);
+        $accordion_header = that.find('.accordion-header'),
+        accordion_group = 'accordion-' + index;
 
         $accordion_header.each(function (index){
 
@@ -88,13 +89,12 @@ define(['jquery', 'jquery.exists'], function($) {
 
           var that = $(this);
 
-
           if(!that.data('initialized')) {
             // set IDs
             that
-              .attr('id', that.attr('id') + '-header-' + index)
+              .attr('id', accordion_group + '-header-' + index)
               .next()
-              .attr('id', that.next().attr('id') + '-content-' + index);
+              .attr('id', accordion_group + '-content-' + index);
 
             // set aria-controls
             that
@@ -103,9 +103,6 @@ define(['jquery', 'jquery.exists'], function($) {
           }
 
         });
-
-
-
       });
     },
 
