@@ -33,20 +33,29 @@ define(['jquery', 'jquery.exists'], function($) {
     },
 
     bindEvents: function() {
-      // Click accordion header
-      this.$accordion_header.on('click', function(event) {
-        event.preventDefault();
-        Accordion.closeAll($(this));
-        Accordion.toggleAccordion($(this));
-      });
+      this.$accordion_header.each(function() {
+        var $this = $(this);
+        if(!$this.data('initialized')) {
 
-      // tab to accordion header and press space bar
-      this.$accordion_header.on('keydown', function(event) {
-        if (event.keyCode === 32) {
-          event.preventDefault();
-          Accordion.toggleAccordion($(this));
+          // Click accordion header
+          $this.on('click', function(event) {
+            event.preventDefault();
+            Accordion.closeAll($(this));
+            Accordion.toggleAccordion($(this));
+          });
+
+          // tab to accordion header and press space bar
+          $this.on('keydown', function(event) {
+            if (event.keyCode === 32) {
+              event.preventDefault();
+              Accordion.toggleAccordion($(this));
+            }
+          });
+
+          $this.data('initialized', true);
         }
       });
+
     },
 
     setOptions: function(options) {
@@ -66,34 +75,36 @@ define(['jquery', 'jquery.exists'], function($) {
 
     addARIAlabels: function() {
       this.$accordion.each(function(index) {
-
         var
         that = $(this),
-        $accordion_header = that.find('.accordion-header').attr('id', 'accordion-' + index),
-        $accordion_content = that.find('.accordion-content').attr('id', 'accordion-' + index);
+        $accordion_header = that.find('.accordion-header').attr('id', 'accordion-' + index);
 
         $accordion_header.each(function (index){
 
+          $accordion_header.each(function() {
+            if($(this).data('initialized'))
+              index ++;
+          });
+
           var that = $(this);
 
-          // set IDs
-          that
-            .attr('id', that.attr('id') + '-header-' + index)
-            .next()
-            .attr('id', that.next().attr('id') + '-content-' + index);
 
-          // set aria-controls
-          that
-            .attr('aria-controls', that.next().attr('id'));
+          if(!that.data('initialized')) {
+            // set IDs
+            that
+              .attr('id', that.attr('id') + '-header-' + index)
+              .next()
+              .attr('id', that.next().attr('id') + '-content-' + index);
+
+            // set aria-controls
+            that
+              .attr('aria-controls', that.next().attr('id'))
+              .next().attr('aria-labelledby', that.attr('id'));
+          }
+
         });
 
-        $accordion_content.each(function() {
-          var that = $(this);
 
-          // set aria-labelledby
-          that
-            .attr('aria-labelledby', that.prev().attr('id'));
-        });
 
       });
     },
