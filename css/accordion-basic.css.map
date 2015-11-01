@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": ";AAEA,iBAAkB;EAChB,MAAM,EAAE,OAAO;;;;AAIjB,kBAAmB;EACjB,OAAO,EAAE,IAAI",
-"sources": ["../scss/accordion-basic.scss"],
-"names": [],
-"file": "accordion-basic.css"
-}
