@@ -17,4 +17,5 @@ requirejs.config({
 requirejs(['accordion'], function(Accordion) {
   Accordion.init();
   Accordion.init();
+  // Accordion.destroy();
 });
