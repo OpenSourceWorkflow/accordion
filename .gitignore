@@ -1,5 +1,6 @@
 **/.DS_Store
 *.sublime-*
+.tags*
 build
 bower_components
 .sass-cache
