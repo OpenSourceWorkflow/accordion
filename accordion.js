@@ -203,8 +203,12 @@ define(['jquery', 'jquery.exists'], function($) {
      */
     _openAccordion: function(accordion_header) {
 
+
       var
       accordion_content = accordion_header.next();
+
+      // trigger event before the accordion opens
+      accordion_header.trigger('accordion.beforeOpen', [accordion_header, accordion_content]);
 
       // accordion-header
       accordion_header.attr('aria-selected', 'true').addClass('accordion-active');
@@ -228,6 +232,10 @@ define(['jquery', 'jquery.exists'], function($) {
 
       var
       accordion_content = accordion_header.next();
+
+      // trigger event before the accordion closes
+      accordion_header.trigger('accordion.beforeClose', [accordion_header, accordion_content]);
+
 
       // accordion-header
       accordion_header.attr('aria-selected', 'false').removeClass('accordion-active');

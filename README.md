@@ -94,6 +94,8 @@ From another page you can link to a specific accordion-content via the given ID 
 
 ```javascript
 'accordion.opened' // passes .accordion-header, .accordion-content
+'accordion.beforeOpen' // passes .accordion-header, .accordion-content
+'accordion.beforeClose' // passes .accordion-header, .accordion-content
 'accordion.closed' // passes .accordion-header, .accordion-content
 'accordion.initialized' // passes .accordion
 ```
