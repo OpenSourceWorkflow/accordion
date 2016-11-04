@@ -25,9 +25,9 @@ define(['jquery', 'jquery.exists'], function($) {
      */
     _cacheElements: function() {
       this.$accordion = $('.accordion');
-      this.$accordion_content = $('.accordion-content');
-      this.$accordion_header = $('.accordion-header');
-      this.$accordion_opened = $('.accordion-opened');
+      this.$accordion_content = this.$accordion.find('.accordion-content');
+      this.$accordion_header = this.$accordion.find('.accordion-header');
+      this.$accordion_opened = this.$accordion.find('.accordion-opened');
     },
 
     /**
