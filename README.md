@@ -1,5 +1,9 @@
 # accordion
 
+![Project is deprecated!](https://cdn.rawgit.com/OpenSourceWorkflow/generator-kickstart/master/deprecation-warning.svg)
+
+This project has been deprecated!
+
 Simple Accordion Script (AMD, Bower).
 
 * multiple tabs can be opened and closed independently
